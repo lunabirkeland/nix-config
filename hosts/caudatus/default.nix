@@ -38,6 +38,35 @@
     enable = true;
   };
 
+  systemd.services = {
+    fprintd.onSuccess = ["fingerprint-fix.service"];
+    fprintd.onFailure = ["fingerprint-fix.service"];
+    fingerprint-fix = {
+      enable = true;
+      description = "Check and reset fingerprint reader after fprintd initialization";
+      script = ''
+        if journalctl -Iu fprintd.service | grep 'Ignoring device due to initialization error: endpoint stalled or request not supported'; then
+          tee "/sys/bus/pci/drivers/xhci_hcd/unbind" > /dev/null <<< "0000:c3:00.3"
+          sleep 0.2s
+          tee "/sys/bus/pci/devices/0000:c3:00.3/reset" > /dev/null <<< 1
+          sleep 0.2s
+          tee "/sys/bus/pci/drivers/xhci_hcd/bind" > /dev/null <<< "0000:c3:00.3"
+        fi
+      '';
+    };
+    wifi-fix = {
+      enable = true;
+      after = ["suspend.target" "suspend-then-hibernate.target" "hibernate.target" "hybrid-sleep.target"];
+      wantedBy = ["suspend.target" "suspend-then-hibernate.target" "hibernate.target" "hybrid-sleep.target"];
+      description = "Reset wifi device after wake up";
+      script = ''
+        tee "/sys/bus/pci/devices/0000:01:00.0/remove" > /dev/null <<< 1
+        sleep 0.2s
+        tee "/sys/bus/pci/rescan" > /dev/null <<< 1
+      '';
+    };
+  };
+
   security.pam.services.login.fprintAuth = false;
   security.pam.services.gdm-fingerprint = {
     text = ''
@@ -68,5 +97,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11";
+  system.stateVersion = "26.05";
 }

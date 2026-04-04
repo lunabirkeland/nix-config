@@ -33,11 +33,20 @@
     mpv = {
       enable = true;
       config = {
+        sub-auto = "fuzzy";
         vo = "gpu-next";
         target-colorspace-hint = true;
+        target-peak = 400;
         gpu-api = "vulkan";
         gpu-context = "waylandvk";
       };
+    };
+
+    librewolf = {
+      enable = true;
+      nativeMessagingHosts = with pkgs; [
+        bitwarden-desktop
+      ];
     };
   };
 
@@ -56,18 +65,19 @@
     hunspell
     hunspellDicts.nb-no
     hunspellDicts.en-gb-large
-    pkgs.unstable.bitwarden-desktop
+    bitwarden-desktop
+    tutanota-desktop
   ];
 
   services.easyeffects.enable = true;
 
-  xdg.configFile."com.github.johnfactotum.Foliate/themes.json".source =
-    pkgs.fetchFromGitHub
-    {
-      owner = "catppuccin";
-      repo = "foliate";
-      rev = "ffca991";
-      sha256 = "4Rt9elZLGuZjSgYsbIaN9u7mxUDfJi3ayIBd0KwF58g=";
-    }
-    + /themes.json;
+  xdg = {
+    autostart = {
+      enable = true;
+      entries = with pkgs; [
+        "${bitwarden-desktop}/share/applications/bitwarden.desktop"
+        "${tutanota-desktop}/share/applications/tutanota-desktop.desktop"
+      ];
+    };
+  };
 }

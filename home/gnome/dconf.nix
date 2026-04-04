@@ -4,22 +4,40 @@ with lib.hm.gvariant; {
   dconf.settings = {
     "org/gnome/shell" = {
       favorite-apps = ["librewolf.desktop" "org.gnome.Terminal.desktop"];
-      enabled-extensions = ["user-theme@gnome-shell-extensions.gcampax.github.com" "dash-to-dock@micxgx.gmail.com" "appindicatorsupport@rgcjonas.gmail.com" "Bluetooth-Battery-Meter@maniacx.github.com"];
+      enabled-extensions = ["user-theme@gnome-shell-extensions.gcampax.github.com" "dash-to-panel@jderose9.github.com" "appindicatorsupport@rgcjonas.gmail.com" "Bluetooth-Battery-Meter@maniacx.github.com" "tiling-shell@domferr.github.com"];
     };
 
-    "org/gnome/shell/extensions/dash-to-dock" = {
-      background-opacity = 0.8;
-      custom-theme-shrink = false;
-      dash-max-icon-size = 40;
-      dock-position = "LEFT";
-      extend-height = false;
-      height-fraction = 0.9;
-      hot-keys = false;
-      preferred-monitor = -2;
-      preferred-monitor-by-connector = "eDP-1";
-      show-mounts = false;
-      show-show-apps-button = false;
-      show-trash = false;
+    "org/gnome/shell/extensions/dash-to-panel" = {
+      appicon-style = "NORMAL";
+      dot-size = 4;
+      dot-style-focused = "DOTS";
+      dot-style-unfocused = "DOTS";
+      global-border-radius = 4;
+      intellihide = true;
+      intellihide-hide-from-windows = true;
+      intellihide-use-pressure = true;
+      panel-anchors = ''
+        {"SDC-0x00000000":"MIDDLE"}
+      '';
+      panel-element-positions = ''
+        {"SDC-0x00000000":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":false,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":false,"position":"stackedBR"},{"element":"rightBox","visible":false,"position":"stackedBR"},{"element":"dateMenu","visible":false,"position":"stackedBR"},{"element":"systemMenu","visible":false,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}]}
+      '';
+      panel-lengths = ''
+        {"SDC-0x00000000":-1}
+      '';
+      panel-positions = ''
+        {"SDC-0x00000000":"LEFT"}
+      '';
+      panel-sizes = ''
+        {"SDC-0x00000000":48}
+      '';
+      scroll-icon-action = "PASS_THROUGH";
+      show-favorites = true;
+      show-favorites-all-monitors = true;
+      show-running-apps = true;
+      stockgs-keep-dash = false;
+      stockgs-keep-top-panel = true;
+      tray-padding = -1;
     };
 
     "org/gnome/terminal/legacy/profiles:" = {

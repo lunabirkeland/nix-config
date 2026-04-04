@@ -10,7 +10,7 @@
   environment = {
     systemPackages = with pkgs; [
       git
-      linuxPackages_latest.perf
+      perf
       neovim
       curl
       wget
@@ -18,6 +18,7 @@
       which
       tree
       sbctl
+      bitwarden-desktop
     ];
     shells = with pkgs; [zsh];
     # allows completion for system packages
@@ -38,14 +39,13 @@
   security.rtkit.enable = true;
 
   programs.zsh.enable = true;
-  programs.adb.enable = true;
   programs.firejail.enable = true;
 
   programs.nh = {
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 14d --keep 3";
-    flake = "/home/luna/system-nix";
+    flake = "/home/luna/nix-config/";
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

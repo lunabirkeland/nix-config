@@ -2,6 +2,7 @@
   imports = [
     ./common.nix
     ./git.nix
-    ./nvf
+    ./nixvim.nix
+    ./spicetify.nix
   ];
 }

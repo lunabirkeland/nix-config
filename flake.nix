@@ -13,7 +13,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -30,7 +30,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -40,13 +40,18 @@
     };
 
     stylix = {
-      url = "github:nix-community/stylix/release-25.11";
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvf = {
-      url = "github:NotAShelf/nvf";
-      # url = "github:lunabirkeland/nvf/modules-nixpkgs-fix";
+    nixvim-config = {
+      url = "github:lunabirkeland/nixvim-config";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # probe-rs-rules to set recommended udev rules for probe-rs
@@ -72,6 +77,7 @@
         modules = [
           {
             nixpkgs.overlays = [
+              (_: prev: import ./pkgs prev)
               (final: _: {
                 unstable = import inputs.nixpkgs-unstable {
                   inherit (final.stdenv.hostPlatform) system;
