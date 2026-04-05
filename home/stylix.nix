@@ -3,6 +3,13 @@
   pkgs,
   ...
 }: {
+  stylix.targets = {
+    librewolf = {
+      firefoxGnomeTheme.enable = true;
+      profileNames = ["default"];
+    };
+  };
+
   gtk = {
     enable = true;
     iconTheme = {
