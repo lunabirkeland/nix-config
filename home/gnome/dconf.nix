@@ -3,7 +3,7 @@
 with lib.hm.gvariant; {
   dconf.settings = {
     "org/gnome/shell" = {
-      favorite-apps = ["librewolf.desktop" "org.gnome.Terminal.desktop"];
+      favorite-apps = ["librewolf.desktop" "foot.desktop"];
       enabled-extensions = ["user-theme@gnome-shell-extensions.gcampax.github.com" "dash-to-panel@jderose9.github.com" "appindicatorsupport@rgcjonas.gmail.com" "Bluetooth-Battery-Meter@maniacx.github.com" "tiling-shell@domferr.github.com"];
     };
 

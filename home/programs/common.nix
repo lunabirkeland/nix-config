@@ -48,6 +48,14 @@
         bitwarden-desktop
       ];
     };
+    foot = {
+      enable = true;
+      settings = {
+        csd = {
+          preferred = "none";
+        };
+      };
+    };
   };
 
   home.packages = with pkgs; [
