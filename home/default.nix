@@ -2,7 +2,7 @@
   imports = [
     ./core.nix
     ./stylix.nix
-    ./gnome
+    ./jay
     ./programs
   ];
 }

@@ -23,7 +23,10 @@
     };
 
     opacity = {
-      desktop = 0.0;
+      applications = 0.75;
+      desktop = 0.75;
+      popups = 0.75;
+      terminal = 0.75;
     };
 
     polarity = "dark";

@@ -42,12 +42,6 @@
       };
     };
 
-    librewolf = {
-      enable = true;
-      nativeMessagingHosts = with pkgs; [
-        bitwarden-desktop
-      ];
-    };
     foot = {
       enable = true;
       settings = {
@@ -80,6 +74,7 @@
   services.easyeffects.enable = true;
 
   xdg = {
+    enable = true;
     autostart = {
       enable = true;
       entries = with pkgs; [

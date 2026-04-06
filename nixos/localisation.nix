@@ -27,15 +27,5 @@
       LC_TELEPHONE = "nb_NO.UTF-8";
       LC_TIME = "nb_NO.UTF-8";
     };
-
-    inputMethod = {
-      enable = true;
-      type = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [
-        uniemoji
-        pinyin
-        m17n
-      ];
-    };
   };
 }

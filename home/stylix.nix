@@ -5,7 +5,6 @@
 }: {
   stylix.targets = {
     librewolf = {
-      firefoxGnomeTheme.enable = true;
       profileNames = ["default"];
     };
   };

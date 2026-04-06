@@ -4,5 +4,6 @@
     ./git.nix
     ./nixvim.nix
     ./spicetify.nix
+    ./librewolf.nix
   ];
 }

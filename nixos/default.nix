@@ -1,7 +1,7 @@
 {
   imports = [
     ./base.nix
-    ./gnome.nix
+    ./jay.nix
     ./localisation.nix
     ./networking.nix
     ./nix-ld.nix

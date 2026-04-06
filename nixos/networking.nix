@@ -19,4 +19,6 @@
 
   # disable rpfilter to allow wireguard to work
   networking.firewall.checkReversePath = false;
+
+  hardware.bluetooth.enable = true;
 }
