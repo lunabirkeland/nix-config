@@ -68,7 +68,7 @@
     hunspellDicts.nb-no
     hunspellDicts.en-gb-large
     bitwarden-desktop
-    tutanota-desktop
+    spotatui
   ];
 
   services.easyeffects.enable = true;
@@ -79,7 +79,6 @@
       enable = true;
       entries = with pkgs; [
         "${bitwarden-desktop}/share/applications/bitwarden.desktop"
-        "${tutanota-desktop}/share/applications/tutanota-desktop.desktop"
       ];
     };
   };

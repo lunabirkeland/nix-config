@@ -41,7 +41,13 @@
         };
       };
     };
-    swaylock.enable = true;
+    swaylock = {
+      enable = true;
+      package = pkgs.swaylock-plugin;
+      settings = {
+        ignore-empty-password = false;
+      };
+    };
   };
 
   xdg.configFile = {
@@ -82,11 +88,14 @@
         show-titles = false;
         middle-click-paste = false;
         workspace-display-order = "sorted";
+        idle.minutes = 10;
+        on-idle = "$lock";
         actions = {
           lock = {
             type = "exec";
             exec = {
-              prog = "${lib.getExe pkgs.swaylock}";
+              prog = lib.getExe pkgs.swaylock-plugin;
+              args = ["--command" "${pkgs.awww}/bin/awww-daemon"];
               privileged = true;
             };
           };
@@ -112,6 +121,14 @@
             ];
           };
         };
+        clients = [
+          {
+            match.exe-regex = "^${pkgs.swaylock-plugin}/.*";
+            capabilities = [
+              "session-lock"
+            ];
+          }
+        ];
 
         shortcuts =
           {
@@ -122,6 +139,7 @@
               type = "exec";
               exec = lib.getExe pkgs.fuzzel;
             };
+            "logo-l" = "$lock";
             "logo-q" = {
               type = "exec";
               exec = lib.getExe pkgs.librewolf;

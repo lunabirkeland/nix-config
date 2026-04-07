@@ -8,7 +8,7 @@
     jay
     foot
     fuzzel
-    swaylock
+    swaylock-plugin
     brightnessctl
   ];
 
@@ -57,6 +57,13 @@
       };
       greetd.enableGnomeKeyring = true;
       login.enableGnomeKeyring = true;
+      swaylock-plugin = {
+        text = ''
+          auth  sufficient  pam_unix.so try_first_pass likeauth nullok
+          auth  sufficient  ${pkgs.fprintd}/lib/security/pam_fprintd.so ignore-empty-password
+          auth  required    pam_deny.so
+        '';
+      };
     };
   };
 
