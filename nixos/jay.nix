@@ -10,6 +10,7 @@
     fuzzel
     swaylock-plugin
     brightnessctl
+    papirus-icon-theme
   ];
 
   xdg.portal = {

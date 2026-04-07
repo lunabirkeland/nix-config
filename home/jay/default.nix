@@ -7,12 +7,14 @@
   imports = [
     ./uwsm.nix
     ./i3status.nix
+    ./wl-tray-bridge.nix
   ];
 
   home.packages = with pkgs; [
     wl-clipboard
     bzmenu
     nerd-fonts.dejavu-sans-mono
+    wl-proxy
   ];
 
   services = {
@@ -88,8 +90,21 @@
         show-titles = false;
         middle-click-paste = false;
         workspace-display-order = "sorted";
-        idle.minutes = 10;
+        idle = {
+          minutes = 10;
+          grace-period.seconds = 5;
+        };
         on-idle = "$lock";
+        on-graphics-initialized = [
+          {
+            type = "exec";
+            exec = lib.getExe pkgs.wl-tray-bridge;
+          }
+          # {
+          #   type = "exec";
+          #   exec = lib.getExe pkgs.bitwarden-desktop;
+          # }
+        ];
         actions = {
           lock = {
             type = "exec";
@@ -251,6 +266,14 @@
           }
           {
             match.app-id-regex = "polkit-gnome-authentication-agent-.*";
+            action = "float";
+          }
+          {
+            match.app-id = "Bitwarden";
+            action = "float";
+          }
+          {
+            match.title = "Control Center";
             action = "float";
           }
         ];
