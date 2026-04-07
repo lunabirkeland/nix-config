@@ -1,17 +1,6 @@
 {
-  config,
-  pkgs,
-  ...
-}: {
   # Set your time zone.
   time.timeZone = "Europe/London";
-
-  services.xserver = {
-    xkb = {
-      layout = "us";
-      variant = "altgr-intl";
-    };
-  };
 
   i18n = {
     defaultLocale = "en_GB.UTF-8";

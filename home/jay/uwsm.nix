@@ -35,7 +35,7 @@
       export QT_QPA_PLATFORMTHEME=${config.qt.platformTheme.name}
       export QT_STYLE_OVERRIDE=${config.qt.style.name}
 
-      export TERMINAL=footclient
+      export TERMINAL=foot
 
       export APP2UNIT_SLICES="a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice"
     '';

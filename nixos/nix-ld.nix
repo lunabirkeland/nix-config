@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # allows running unpatched binaries on nixos
   programs.nix-ld = {
     enable = true;

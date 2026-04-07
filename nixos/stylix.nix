@@ -1,4 +1,4 @@
-{lib, ...}: {
+{
   stylix = {
     enable = true;
     autoEnable = true;
