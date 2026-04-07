@@ -34,6 +34,8 @@
 
   services.seatd.enable = true;
 
+  powerManagement.enable = true;
+
   # allows pipewire to gain realtime priority
   security.rtkit.enable = true;
 
