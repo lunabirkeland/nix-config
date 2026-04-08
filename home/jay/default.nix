@@ -103,12 +103,34 @@
         ];
         actions = {
           lock = {
-            type = "exec";
-            exec = {
-              prog = lib.getExe pkgs.swaylock-plugin;
-              args = ["--command" "${pkgs.awww}/bin/awww-daemon"];
-              privileged = true;
-            };
+            type = "multi";
+            actions = [
+              {
+                type = "configure-idle";
+                idle = {
+                  minutes = 0;
+                  seconds = 30;
+                };
+              }
+              {
+                type = "exec";
+                exec = {
+                  prog = lib.getExe pkgs.swaylock-plugin;
+                  args = [
+                    "--command"
+                    "${pkgs.awww}/bin/awww-daemon"
+                  ];
+                  privileged = true;
+                };
+              }
+              {
+                type = "configure-idle";
+                idle = {
+                  minutes = 10;
+                  seconds = 0;
+                };
+              }
+            ];
           };
           poweroff = {
             type = "exec";
