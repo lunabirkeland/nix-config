@@ -100,10 +100,6 @@
             type = "exec";
             exec = lib.getExe pkgs.wl-tray-bridge;
           }
-          # {
-          #   type = "exec";
-          #   exec = lib.getExe pkgs.bitwarden-desktop;
-          # }
         ];
         actions = {
           lock = {
